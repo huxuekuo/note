@@ -108,3 +108,10 @@ https://start.spring.io/actuator/info
 }
 ```
 
+
+
+都会推荐一个具体的版本比如Hoxton SR3 中具体推荐了配合搭档
+
+![WeChat4033ddf97437d804aa912447b22f80d8](../images/WeChat4033ddf97437d804aa912447b22f80d8.png)
+
+![WeChat900ced6c8abe25b4e16e48b24e61969a](../images/WeChat900ced6c8abe25b4e16e48b24e61969a.png)
