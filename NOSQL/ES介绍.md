@@ -61,6 +61,8 @@ services:
     image: daocloud.io/library/kibana:6.5.4
     restart: always
     container_name: kibane
+    ports:
+    	- 5601:5601
     depends_on:
       - elasticsearch #kibana在elasticsearch启动之后再启动
     environment:
@@ -68,4 +70,36 @@ services:
 ```
 
 
+
+# IK 分词器
+
+
+
+## 安装
+
+> 下载地址: https://github.com/medcl/elasticsearch-analysis-ik/releases?after=v6.7.2
+>
+> 下载需要与ES版本一直否则无法启动ES, 
+
+
+
+在 elasticsearch/plugins 下新建IK文件夹, 解压 后 重启ES即可
+
+
+
+## IK 介绍
+
+他有两种分词模式 ik_mart()与 ik_max_word
+
+
+
+### ik_mart 使用介绍
+
+
+
+![image text](https://raw.githubusercontent.com/huxuekuo/note/master/images/IK_mart.jpeg)
+
+
+
+### ik_max_word使用介绍
 
