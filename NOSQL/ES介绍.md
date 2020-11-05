@@ -89,7 +89,7 @@ services:
 
 ## IK 介绍
 
-他有两种分词模式 ik_mart()与 ik_max_word
+如果使用中文建议使用IK,他有两种分词模式 ik_mart(最少切分)与 ik_max_word(最细粒度划分)
 
 
 
@@ -97,9 +97,13 @@ services:
 
 
 
-![image text](https://raw.githubusercontent.com/huxuekuo/note/master/images/IK_mart.jpeg)
+![image text](https://raw.githubusercontent.com/huxuekuo/note/master/images/IK_mart.jpg)
+
+
 
 
 
 ### ik_max_word使用介绍
+
+![image text](https://raw.githubusercontent.com/huxuekuo/note/master/images/ik_max_word.jpg)
 
