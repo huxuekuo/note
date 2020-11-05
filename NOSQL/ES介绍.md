@@ -652,3 +652,126 @@ GET /vms/product/_search
 
 
 
+## 布尔值查询
+
+
+
+### must (并且)
+
+```json
+GET /vms_test/_doc/_search
+{
+  "query":{
+    "bool":{
+      "must":[
+      {
+          "match":{
+          "name":"胡"
+        }
+      },
+       {
+          "match":{
+          "age":"20"
+        }
+      }
+    ]
+    }
+  }
+}
+```
+
+
+
+>  获取同时满足两个条件的数据
+
+
+
+### should (或)
+
+```json
+GET /vms_test/_doc/_search
+{
+  "query":{
+    "bool":{
+      "should":[
+      {
+          "match":{
+          "name":"胡"
+        }
+      },
+       {
+          "match":{
+          "age":"20"
+        }
+      }
+    ]
+    }
+  }
+}
+
+```
+
+
+
+### must_not(不等于)
+
+```json
+GET /vms_test/_doc/_search
+{
+  "query":{
+    "bool":{
+      "must_not":[
+      {
+          "match":{
+          "name":"胡"
+        }
+      },
+       {
+          "match":{
+          "age":"20"
+        }
+      }
+    ]
+    }
+  }
+}
+```
+
+
+
+### filter(过滤器)
+
+
+
+#### range(范围过滤)
+
+
+
+```json
+GET vms_test/_doc/_search
+{
+  "query":{
+    "bool":{
+      "filter":{
+        "range":{
+          "age":{
+            "gt":10
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+
+> `gt` 大于
+>
+> `lt` 小于
+>
+> `gte` 大于等于
+>
+> `lte` 小于等于
+>
+> 是可以联合使用的
