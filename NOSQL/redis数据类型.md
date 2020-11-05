@@ -18,11 +18,11 @@ redisObject中包含的属性 值 type(类型),encoding(编码格式),lru(时间
 
 ### prt
 
-
+<font color="read">prt</font> 相当于指针,指向的对象是由<font color="read">type, encoding来决定的</font> 比如<font color="read">type</font> 指向了REDIS_HASH <font color="read">encoding</font> 指向了 ZIPMAP 那么 prt 就指向 这个ziomap 
 
 ## String
 
-
+​	https://redis.io/topics/data-types-intro
 
 ## Hash
 

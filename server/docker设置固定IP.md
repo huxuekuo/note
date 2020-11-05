@@ -18,8 +18,6 @@ sudo docker network ls
 
 在启动docker的时候,可以通过—network=none,这样docker就不会给容器分配IP
 
-
-
 ### host(主机网络)
 
 
