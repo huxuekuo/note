@@ -446,7 +446,7 @@ DELETE /test1/type1/1
 
 
 
-## 精准查询
+## 模糊查询
 
 
 
@@ -492,6 +492,25 @@ GET /vms/product/_search
 ```
 
 
+
+> `match` 会使用分词比如`iphone11` 会被分为`iphone`和`11`进行查询
+
+
+
+#### 模糊查询一个字段多条件
+
+```json
+GET vms_test/_doc/_search
+{
+  "query":{
+    "match":{
+      "name":"测 胡"
+    }
+  }
+}
+```
+
+> 查询`name`字段保存`测`与`胡`的内容可以直接使用空格间隔就可以了,只要满足其中一个条件就OK
 
 ## 略部分字段显示(_source)
 
@@ -775,3 +794,8 @@ GET vms_test/_doc/_search
 > `lte` 小于等于
 >
 > 是可以联合使用的
+
+
+
+## 精准查询
+
