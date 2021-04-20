@@ -54,7 +54,7 @@ services:
     environment:
       - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
       - "discovery.type=single-node" #以单一节点模式启动
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m" #设置使用jvm内存大小
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m" #设置使用jvm内存大小
     ports:
       - 9200:9200
   kibana:
