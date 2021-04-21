@@ -56,6 +56,14 @@
 
 
 
+## 分代算法
+
+
+
+其实分代算法就是在JVM中不同阶段使用不同的GC算法, 
+
+
+
 ## GC roots
 
 GC roots(Garbage Collector) roots, 标记清除算法使用了GC roots进行标记存活节点, 哪什么是GC roots?
