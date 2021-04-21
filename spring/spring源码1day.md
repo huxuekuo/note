@@ -171,27 +171,7 @@ XSD: XML Schema 语言就是XSD(XML Schema Difinition).XML Schema  描述了XML�
 
 
 
+new ClassPathResource("services.xml") 如何获取的配置文件 ??
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## new ClassPathResource("services.xml") 如何获取的配置文件 ??
-
-
-
-## 为什么忽略BeanNameAware/BeanFactoryAware/BeanClassLoaderAware 接口?
-
-
+> 只看这
 
