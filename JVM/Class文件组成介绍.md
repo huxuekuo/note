@@ -78,27 +78,25 @@ ClassFile {
 }
 ```
 
-- **magic**
+### **magic**
 
-  - 魔术值提供用于标识类文件格式的魔术数字； 它的值为0xCAFEBABE。
+>  魔术值提供用于标识类文件格式的魔术数字； 它的值为0xCAFEBABE。
 
-- **minor_version, major_version**
+###  **minor_version, major_version**
 
-  - `minor_version`和`major_version`项目的值是此类文件的次要版本号和主要版本号。 主版本号和次版本号共同决定了类文件格式的版本。 如果类文件的主版本号为M，次版本号为m，则将其类文件格式的版本表示为M.m。 因此，可以按字典顺序对类文件格式的版本进行排序，例如1.5 <2.0 <2.1。
+> `minor_version`和`major_version`项目的值是此类文件的次要版本号和主要版本号。 主版本号和次版本号共同决定了类文件格式的版本。 如果类文件的主版本号为M，次版本号为m，则将其类文件格式的版本表示为M.m。 因此，可以按字典顺序对类文件格式的版本进行排序，例如1.5 <2.0 <2.1。
 
-- **constant_pool_count**
+###  **constant_pool_count**
 
-  - 该`constant_pool_count`项目的值 等于表中的条目数`constant_pool`加一。一个 `constant_pool`指数被认为是有效的，如果它比大于零且少`constant_pool_count`，除了类型的常量`long`和`double`
+>  该`constant_pool_count`项目的值 等于表中的条目数`constant_pool`加一。一个 `constant_pool`指数被认为是有效的，如果它比大于零且少`constant_pool_count`，除了类型的常量`long`和`double`
 
-- **constant_pool[]**
+###  **constant_pool[]**
 
-  - `constant_pool`是代表各种串常量，类和接口名，字段名，和本内提到的其他常量, `ClassFile`结构和其子结构。每个`constant_pool`表条目的格式 由其第一个“标签”字节指示。
+>  `constant_pool`是代表各种串常量，类和接口名，字段名，和本内提到的其他常量, `ClassFile`结构和其子结构。每个`constant_pool`表条目的格式 由其第一个“标签”字节指示。
 
-    该`constant_pool` 表的索引从1到`constant_pool_count`-1
+>  该`constant_pool` 表的索引从1到`constant_pool_count`-1
 
   - 数据项介绍
-
-     - 
 
      | 常量池中数据项类型 | 	类型标志	| 类型描述 |
      | -------------- | ------ | --------------------------------- |
@@ -114,9 +112,9 @@ ClassFile {
      | CONSTANT_InterfaceMethodref	 | 11	 | 对一个接口中声明的方法的符号引用 |
      | CONSTANT_NameAndType	 | 12	 | 对一个字段或方法的部分符号引用 |
 
-- **access_flags**
+###  **access_flags**
 
-  - 该`access_flags`项目的值 是标志的掩码，用于表示对该类或接口的访问权限以及该类或接口的属性
+>  该`access_flags`项目的值 是标志的掩码，用于表示对该类或接口的访问权限以及该类或接口的属性
 
   - | 标志名称       | Value  | 备注                              |
     | -------------- | ------ | --------------------------------- |
@@ -129,59 +127,107 @@ ClassFile {
     | ACC_ANNOTATION | 0x2000 | 声明这是一个注解类型              |
     | ACC_ENUM       | 0x4000 | 声明这是一个枚举类型              |
 
-- **this_class**
+###  **this_class**
 
-  - 该`this_class`项目的值 必须是`constant_pool`表中的有效索引。该`constant_pool`索引处的条目必须是表示此文件定义的类或接口的`CONSTANT_Class_info`结构class
+>  该`this_class`项目的值 必须是`constant_pool`表中的有效索引。该`constant_pool`索引处的条目必须是表示此文件定义的类或接口的`CONSTANT_Class_info`结构class
 
-- **super_class**
+###  **super_class**
 
-  - 对于一个类，`super_class`值必须为零或必须是`constant_pool`表中的有效索引。 如果`super_class`的值不为零，则`constant_pool`条目必须为`CONSTANT_Class_info`结构，该结构表示此类文件定义的类的直接超类。 直接超类或其任何超类都不能在其ClassFile结构的access_flags项中设置ACC_FINAL标志。
+>  对于一个类，`super_class`值必须为零或必须是`constant_pool`表中的有效索引。 如果`super_class`的值不为零，则`constant_pool`条目必须为`CONSTANT_Class_info`结构，该结构表示此类文件定义的类的直接超类。 直接超类或其任何超类都不能在其ClassFile结构的access_flags项中设置ACC_FINAL标志。
 
-    如果`super_class`的值为零，则该类文件必须表示类Object，这是没有直接超类的唯一类或接口。
+**如果`super_class`的值为零，则该类文件必须表示类Object，这是没有直接超类的唯一类或接口。**
 
-    对于接口，`super_class`的值必须始终是`constant_pool`表中的有效索引。 `constant_pool`条目必须是代表类**Object**的`CONSTANT_Class_info`结构。
+**对于接口，`super_class`的值必须始终是`constant_pool`表中的有效索引。 `constant_pool`条目必须是代表类Object的`CONSTANT_Class_info`结构。*
 
-- **interfaces_count**
 
-  - interfaces_count的值给出了此类或接口类型的直接超级接口的数量
 
-- **interfaces[interfaces_count]**
+### interfaces_count
 
-  - `interfaces`数组中的每个值都必须是`constant_pool`表中的有效索引。 `interfaces [i]`的每个值**（其中0≤i <interfaces_count）**的`constant_pool`条目必须是`CONSTANT_Class_info`结构，该结构表示一个接口，该接口是此类或接口类型的直接超接口，从左到右。 -类型中源中给定的-right顺序。
+> interfaces_count的值给出了此类或接口类型的直接超级接口的数量
 
-- **fields_count**
 
-  - `fields_count`的值给出了**fields**表中`field_info`结构的数量。 `field_info`结构.表示此类或接口类型声明的所有字段，包括类变量和实例变量
+###  **interfaces[interfaces_count]**
+>  `interfaces`数组中的每个值都必须是`constant_pool`表中的有效索引。 `interfaces [i]`的每个值**（其中0≤i <interfaces_count）**的`constant_pool`条目必须是`CONSTANT_Class_info`结构
 
-- **fields[fields_count]**
+**注意， 只有当前类直接实现的接口才会被统计， 如果当前类继承了另一个类， 而另一个类又实现了一个接口， 那么这个接口不会统计在当前类的interfaces_count中**
 
-  - `fields`的每个值都必须是`field_info`结构，以提供对该类或接口中字段的完整描述。 字段表仅包含由此类或接口声明的那些字段。 **它不包括代表从超类或超接口继承的字段**
 
-- **methods_count**
 
-  - `methods_count`的值给出了`methods`表中`method_info`结构的数量
+### `fields_count`
 
-- **methods[methods_count]**
+> `fields_count`的值给出了**fields**表中`field_info`结构的数量。 `field_info`结构.表示此类或接口类型声明的所有字段，包括类变量和实例变量
 
-  - 方法表中的每个值都必须是`method_info`结构，以提供对该类或接口中方法的完整描述。 如果在method_info结构的`access_flags`项中均未设置ACC_NATIVE和ACC_ABSTRACT标志，则还将提供实现该方法的Java虚拟机指令。
+###   **fields[fields_count]**
 
-    `method_info`表示此类或接口类型声明的所有方法，包括实例方法，类方法，实例初始化方法以及任何类或接口初始化的方法。 **方法表不包括表示从超类或超接口继承的方法的项**。
+`fields`的每个值都必须是`field_info`结构，以提供对该类或接口中字段的完整描述。 字段表仅包含由此类或接口声明的那些字段。 **它不包括代表从超类或超接口继承的字段**
 
-- **attributes_count**
+**注意， 这里包括静态字段， 但不包括从父类继承的字段**
 
-  - `attribute_count`的值提供此类的属性表中的属性数
 
-- **attributes[attributes_count]**
 
-  - 属性表的每个值都必须是`attribute_info`结构。
 
-    规范定义的显示在`ClassFile`结构的属性表中的属性是`InnerClasses`，`EnclosingMethod`，`Synthetic`（第4.7.8节），`Signature`（第4.7.9节）， `SourceFile`（§4.7.10），`SourceDebugExtension`（§4.7.11），`RuntimeVisibleAnnotations`（§4.7.16），`RuntimeInvisibleAnnotations`（§4.7.17）和`BootstrapMethods`（§4.7.21）属性。
 
-    如果Java虚拟机实现识别出版本号为49.0或更高版本的类文件，则它必须识别并正确读取在以下位置找到的签名（第4.7.9节），`RuntimeVisibleAnnotations`（第4.7.16节）和`RuntimeInvisibleAnnotations`（第4.7.17节）属性。版本号为49.0或更高版本的类文件的`ClassFile`结构的属性表。
+#### `field_info` 介绍
 
-    如果Java虚拟机实现识别出版本号为51.0或更高版本的类文件，则它必须识别并正确读取在版本号为51.0或更高版本的类文件的`ClassFile`结构的属性表中找到的`BootstrapMethods`（第4.7.21节）属性。以上。
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210422182219.png" style="zoom:33%;" />
 
-    需要Java虚拟机实现来静默忽略它无法识别的`ClassFile`结构的属性表中的任何或所有属性。规范中未定义的属性不允许影响类文件的语义，而只能提供其他描述性信息（第4.7.1节）。
+- name_index : 这是一个指向常量池的索引， 它描述的是当前字段的字段名
+- Descriptor_index : 指向常量池的索引， 它描述的是当前字段的描述符
+- Attributes_count/attributes: 对当前字段所具有的属性的描述,属性和源文件中的属性不是同一个概念， 在源文件测层面中， 属性是字段的另一种叫法
+  - attributes_count表示这个字段有几个属性
+  - 可以出现在filed_info中的属性有三种， 分别是ConstantValue， Deprecated， 和 Synthetic
+
+###   **methods_count**
+
+​		`methods_count`的值给出了`methods`表中`method_info`结构的数量
+
+###  **methods[methods_count]**
+
+
+
+​		方法表中的每个值都必须是`method_info`结构，以提供对该类或接口中方法的完整描述。 如果在method_info结构的`access_flags`项中均未设置ACC_NATIVE和ACC_ABSTRACT标志，则还将提供实现该方法的Java虚拟机指令。
+
+`method_info`表示此类或接口类型声明的所有方法，包括实例方法，类方法，实例初始化方法以及任何类或接口初始化的方法。 **方法表不包括表示从超类或超接口继承的方法的项**。
+
+
+
+#### method_info 介绍
+
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210422182219.png" style="zoom:33%;" />
+
+- name_index : 这是一个指向常量池的索引， 它描述的是当前方法的方法名
+- Descriptor_index : 指向常量池的索引， 它描述的是当前方法的描述符
+- Attributes_count/attributes: 对当前方法所具有的属性的描述,属性和源文件中的属性不是同一个概念， 在源文件测层面中， 属性是字段的另一种叫法
+  - attributes_count表示这个字段有几个属性
+  - 可以出现在filed_info中的属性有三种，Code， Deprecated， Exceptions 和Synthetic
+
+### **attributes_count**
+
+> `attribute_count`的值提供此类的属性表中的属性数
+
+###  **attributes[attributes_count]**
+
+`attributes` 数据中每一项是一个 `attribute_info` 属性, 
+
+**需要说明的是， 属性会出现在多个地方， 不仅仅出现在顶层的ClassFile中， 也会出现在class文件中的数据项中， 如出现在field_info中， 用来描述特定字段的一些信息， 还可以出现在method_info中， 用来描述特定方法的一些信息**
+
+
+
+#### Attribute_info 
+
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210422183200.png" style="zoom:40%;" />
+
+`attribute_name_index` : attribute_name_index占两个字节， 它是一个指向常量池数据项的索引。 它指向一个CONSTANT_Utf8_info ， 这个CONSTANT_Utf8_info 中存放的是当前属性的名字
+
+
+
+`attribute_length`: 它表示当前属性的长度， 这个长度不包括前6个字节， 也就是说只包括属性真实信息（也就是info）的长度。
+
+
+
+`Info` : info， 它的长度由上面提到的attribute_length指定， 它存放的是真实的属性数据
+
+
 
 
 
