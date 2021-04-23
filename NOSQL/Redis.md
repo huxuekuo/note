@@ -1,4 +1,23 @@
-# Redis
+; nested exception is java.sql.SQLSyntaxErrorException: Table 'starrank_service.wechat_mp_oauth' doesn't exist
+2021-04-22 16:52:05.858  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.867  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.944  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.949  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.987  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.991  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.995  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:05.999  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.002  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.019  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.022  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.043  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.058  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.413  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.418  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.421  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:06.440  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 16:52:10.547  INFO 1 --- [onPool-worker-0] c.y.f.g.t.IstioTraceClientInterceptor    : Missing trace meta for outgoing request.
+2021-04-22 18:14:57.247 ERROR 1 --- [nio-8080-exec-2] c.s.s.a.c.GlobalExceptionConfiguration   : GRPC_EXCEPRedis
 
 
 
