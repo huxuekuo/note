@@ -229,6 +229,187 @@ ClassFile {
 
 
 
+#### ClassFile中存在的属性
+
+
+
+##### `SourceFile`
+
+
+
+该属性出现在顶层的class文件中。 它描述了该类是从哪个源文件中编译来的， 注意， 描述的是源文件， 而不是类， 一个源文件中可以存在多个类。
+
+
+
+ attribute_name_index指向常量池中的一个CONSTANT_Utf8_info ， 这个CONSTANT_Utf8_info 中存放的是这个属性的名字字符串， 即“SourceFile” 。 
+
+attribute_length是属性信息的长度， 这里是2， 因为这个属性的info就两个字节
+
+sourcefile_index指向常量池中的一个CONSTANT_Utf8_info ， 这个CONSTANT_Utf8_info 中存放的是生成该类的源文件的文件名， 这里的文件名不包括路径部分
+
+
+
+```java
+  #17 = Utf8               SourceFile
+  #18 = Utf8               PersonSS.java
+		....
+    ....
+SourceFile: "PersonSS.java"
+  // 省略部分源文件
+```
+
+
+
+##### `InnerClasses`
+
+
+
+InnerClasses是一个存在于顶层class文件中的属性， 它描述的是内部类和外围类的关系
+
+每个类可能有多个内部类， 而这些内部类中可能还有内部类， 多层嵌套。外围类中的InnerClasses属性必须描述它的所有内部类， 而内部类中的InnerClasses也必须描述它的外围类
+
+**这个属性相对较为复杂， 而对于我们理解class文件又不具有很大的意义， 所以我们只是简单的介绍一下**
+
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210423103516.png" style="zoom:33%;" />
+
+前两个就不介绍了, number_of_classes 是描述具体内部类个数
+
+classes 可以看做一个数组, 这个数组每一个项是inner_class_info, 
+
+<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210423103809561.png" alt="image-20210423103809561" style="zoom:33%;" />
+
+
+
+##### `Synthetic`
+
+
+
+`Synthetic`属性可以出现在`filed_info`中， `method_info`中和顶层的`ClassFile`中， 分别表示这个**字段， 方法或类不是有用户代码生成的（即不存在与源文件中）， 而是由编译器自动添加的例如**， 编译器会为内部类增加一个字段， 该字段是对外部类对象的引用； 如果一个不定义构造方法， 那么编译器会自动添加一个无参数的构造方法<init>， 如果定义了静态字段或静态代码块， 还会根据具体情况， 增加静态初始化方法<clinit> 。 此外， 有些机制， 如动态代理， 会在运行时自动生成字节码文件， 由于这些类不是由源文件中编译来的， 所以这些类的class文件中会有一个Synthetic属性。 
+
+
+
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210423104218.png" style="zoom:33%;" />
+
+##### `ConstantValue`
+
+
+
+`ConstantValue`属性出现在`class`文件中的`field_info`中， 也就是说它是一个和字段相关的属性。 每个`field_info`中最多只能出现一个`ConstantValue`属性。 此外， 要注意的是， 必须是静态字段才可以有`ConstantValue`属性。 这个静态字段可以是`final`的， 也可以不是`final`的,只有**基本数据类型或String类型的静态变量**才可以存在`ConstantValue`属性
+
+静态初始化有两种方式:
+
+	1. constantValue 属性
+ 	2. 静态初始化方法<clinit> 
+
+不同编译器有不同的实现, 但是如果虚拟机决定使用constantValue进行赋值, 那么这个变量的复制动作, 必须位于<clinit> 之前
+
+
+
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/20210423111325.png" style="zoom:33%;" />
+
+constantvalue_index ， 这是一个指向常量池中某个数据项的索引。这个常量池数据项中存放的就是当前字段的值
+
+
+
+常量池中的数据项，根据field_info描述的字段的不同， 可以是不同类型的数据项
+
+- byte， short， char， boolean : CONSTANT_Integer_info
+  -  虽然java语言支持byte， short， char， boolean类型， 但是JVM却不支持这几种类型
+
+- String : CONSTANT_String_info
+- long : CONSTANT_Long_info
+
+
+
+###### 实例说明
+
+```java
+package com.jg.zhang;
+ 
+public class Person {
+	
+	static final int a = 1;
+	
+	int age;
+ 
+	int getAge(){
+		return age;
+	}
+}
+```
+
+
+
+```java
+ 
+Constant pool:
+ 
+   #7 = Utf8               ConstantValue
+   #8 = Integer            1
+ 
+ 
+{
+  static final int a;
+    flags: ACC_STATIC, ACC_FINAL
+    ConstantValue: int 1
+    .........
+}
+```
+
+
+
+##### `Deprecated`
+
+
+
+Deprecated属性可以存在于filed_info中， method_info中和顶层的ClassFile中， 分别表示这个字段， 方法或类已经过时
+
+@deprecated注解。 也就是说， 如果在源文件中为一个字段， 方法或类标注了@deprecated注解， 那么编译器就会在class文件中为这个字段， 方法或类生成一个Deprecated属性 。
+
+<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210423112046732.png" alt="image-20210423112046732" style="zoom:40%;" />
+
+attribute_length永远为0 ， 因为这个属性只是一个标志信息， 用来表示字段， 方法， 类已经过时， 而不具有任何实质性的属性信息
+
+###### 实例说明
+
+```java
+package com.jg.zhang;
+ 
+public class Person {
+	
+	int age;
+ 
+	@Deprecated
+	int getAge(){
+		return age;
+	}
+}
+```
+
+```java
+  ......
+  
+Constant pool:
+  ......
+ 
+  #18 = Utf8               Deprecated
+ 
+  ......
+ 
+{
+ 
+  ......
+ 
+  int getAge();
+    flags:
+    Deprecated: true
+ 
+    ......
+ 
+}
+```
+
+可以看到， 在getAge方法相关的信息中， 有一行 Deprecated: true ， 这说明编译器在getAge方法的method_info中加入了Deprecated属性。 常量池第18项的CONSTANT_Utf8_info中存放的是Deprecated属性的属性名“Deprecated” 。 
 
 
 ## 常量池数据项介绍
