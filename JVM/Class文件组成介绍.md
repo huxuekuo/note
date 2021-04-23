@@ -276,7 +276,7 @@ InnerClasses是一个存在于顶层class文件中的属性， 它描述的是�
 
 classes 可以看做一个数组, 这个数组每一个项是inner_class_info, 
 
-<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210423103809561.png" alt="image-20210423103809561" style="zoom:33%;" />
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/image-20210423103809561.png" alt="image-20210423103809561" style="zoom:33%;" />
 
 
 
@@ -366,7 +366,7 @@ Deprecated属性可以存在于filed_info中， method_info中和顶层的ClassF
 
 @deprecated注解。 也就是说， 如果在源文件中为一个字段， 方法或类标注了@deprecated注解， 那么编译器就会在class文件中为这个字段， 方法或类生成一个Deprecated属性 。
 
-<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210423112046732.png" alt="image-20210423112046732" style="zoom:40%;" />
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/image-20210423112046732.png" alt="image-20210423112046732" style="zoom:40%;" />
 
 attribute_length永远为0 ， 因为这个属性只是一个标志信息， 用来表示字段， 方法， 类已经过时， 而不具有任何实质性的属性信息
 
@@ -464,7 +464,7 @@ Constant pool:
 
 
 
-<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210421153644824.png" alt="image-20210421153644824" style="zoom:33%;" />
+<img src="https://gitee.com/panda_soft/note_images/raw/master/path/image-20210421153644824.png" alt="image-20210421153644824" style="zoom:33%;" />
 
 > `序号23:`
 >
@@ -484,7 +484,7 @@ descriptor
 
 > 一个常量池中的 CONSTANT_Integer_info 数据项, 可以看做是CONSTANT_Integer类型的一个实例。它存储的是源文件中出现的int型数据的值。
 
-![image-20210421155045879](/Users/edz/Library/Application Support/typora-user-images/image-20210421155045879.png)
+![image-20210421155045879](https://gitee.com/panda_soft/note_images/raw/master/path/image-20210421155045879.png)
 
 
 
@@ -549,7 +549,7 @@ long, double 为 8个字节
 
 储存模型: 
 
-​	<img src="/Users/edz/Library/Application Support/typora-user-images/image-20210421160904253.png" alt="image-20210421160904253" style="zoom:60%;" />
+​	<img src="https://gitee.com/panda_soft/note_images/raw/master/path/image-20210421160904253.png" alt="image-20210421160904253" style="zoom:60%;" />
 
 
 
